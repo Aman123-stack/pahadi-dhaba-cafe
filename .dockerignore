@@ -1,0 +1,8 @@
+**/node_modules
+client/dist
+server/storage
+server/.env
+.env
+.git
+*.log
+index (4).html

@@ -1,0 +1,16 @@
+{
+  "name": "pahadi-dhaba-cafe",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Pahadi Dhaba & Cafe website: React (Vite) client + Node.js (Express) API",
+  "scripts": {
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "dev": "concurrently -n api,web -c yellow,cyan \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start",
+    "release": "node scripts/package-release.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

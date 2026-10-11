@@ -1,0 +1,2615 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#C84B00">
+    <title>Pahadi Dhaba & Cafe | Rustic Hillside Fine Dining in Bhubaneswar</title>
+    <meta name="description" content="Bhubaneswar's premier rustic hillside fine-dining destination. Slow-cooked Champaran Handi Mutton, Barwan Tangdi Kababs, and private outdoor cabanas. 4.6★ (1,266+ reviews)">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#C84B00',
+                            brown: '#3E2723',
+                            cream: '#FFF8E7',
+                            dark: '#1A1311',
+                            gold: '#FFB74D',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            background: #FFF8E7;
+        }
+
+        /* Smooth reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        /* Text reveal animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Pulse glow effect */
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(200, 75, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(200, 75, 0, 0.8), 0 0 60px rgba(200, 75, 0, 0.4);
+            }
+        }
+
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        /* Rotating border animation */
+        @keyframes rotateBorder {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .rotating-border {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rotating-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: conic-gradient(from 0deg, #C84B00, #FFB74D, #C84B00);
+            border-radius: inherit;
+            animation: rotateBorder 3s linear infinite;
+            z-index: -1;
+        }
+
+        .rotating-border::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: inherit;
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        /* Parallax sections */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Enhanced Hover effects */
+        .hover-lift {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+            position: relative;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(200, 75, 0, 0.25);
+        }
+
+        /* 3D Card Tilt Effect */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+        }
+
+        .card-3d:hover {
+            transform: perspective(1000px) rotateY(5deg) rotateX(5deg);
+        }
+
+        /* Shine effect on hover */
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shine-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.7s;
+        }
+
+        .shine-effect:hover::before {
+            left: 150%;
+        }
+
+        /* Bounce animation */
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(-50px);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .bounce-in {
+            animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* Glass morphism */
+        .glass {
+            background: rgba(255, 248, 231, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Fire animation for logo */
+        @keyframes flicker {
+            0%, 100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+            25% { opacity: 0.9; transform: scale(1.05); filter: brightness(1.2); }
+            50% { opacity: 0.8; transform: scale(1.08); filter: brightness(1.3); }
+            75% { opacity: 0.9; transform: scale(1.03); filter: brightness(1.1); }
+        }
+
+        .fire-logo {
+            animation: flicker 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(200, 75, 0, 0.5));
+        }
+
+        /* Advanced floating animation with rotation */
+        @keyframes floatRotate {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(-25px) rotate(0deg);
+            }
+            75% {
+                transform: translateY(-15px) rotate(-5deg);
+            }
+        }
+
+        .floating {
+            animation: floatRotate 4s ease-in-out infinite;
+        }
+
+        /* Glowing text animation */
+        @keyframes textGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(200, 75, 0, 0.5),
+                             0 0 20px rgba(200, 75, 0, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(200, 75, 0, 0.8),
+                             0 0 40px rgba(200, 75, 0, 0.5),
+                             0 0 60px rgba(200, 75, 0, 0.3);
+            }
+        }
+
+        .text-glow {
+            animation: textGlow 2s ease-in-out infinite;
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #C84B00 0%, #FFB74D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FFF8E7;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #C84B00;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A03D00;
+        }
+
+        /* Shimmer effect */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        /* Menu cards always visible */
+        #menu .menu-card { opacity: 1 !important; visibility: visible !important; }
+
+        /* Menu card hover effect */
+        .menu-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .menu-card:hover::before {
+            left: 100%;
+        }
+
+        /* Stagger children animation */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .stagger-container:hover .stagger-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Booking form animations */
+        .form-input {
+            position: relative;
+            border-bottom: 2px solid #C84B00;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-bottom-color: #FFB74D;
+            transform: scale(1.02);
+        }
+
+        /* Video overlay */
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(26,19,17,0.7) 0%, rgba(26,19,17,0.3) 50%, rgba(26,19,17,0.8) 100%);
+        }
+
+        /* Rating stars animation */
+        @keyframes star-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .star-animated {
+            display: inline-block;
+            animation: star-pulse 1.5s ease-in-out infinite;
+        }
+
+        .star-animated:nth-child(2) { animation-delay: 0.1s; }
+        .star-animated:nth-child(3) { animation-delay: 0.2s; }
+        .star-animated:nth-child(4) { animation-delay: 0.3s; }
+        .star-animated:nth-child(5) { animation-delay: 0.4s; }
+
+        /* Magnetic button effect */
+        .magnetic-btn {
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        /* Image zoom on hover */
+        .img-zoom {
+            overflow: hidden;
+        }
+
+        .img-zoom img {
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .img-zoom:hover img {
+            transform: scale(1.15) rotate(2deg);
+        }
+
+        /* Typewriter effect */
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #C84B00;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
+        }
+
+        /* Date picker styling */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        input[type="date"] {
+            position: relative;
+        }
+
+        input[type="date"]::-webkit-inner-spin-button,
+        input[type="date"]::-webkit-clear-button {
+            display: none;
+        }
+
+        input[type="date"]::-webkit-datetime-edit {
+            padding: 0;
+        }
+
+        input[type="date"]:focus::-webkit-datetime-edit {
+            background: transparent;
+        }
+
+        /* ============ ENHANCED PREMIUM ANIMATIONS ============ */
+
+        /* Text reveal split animation */
+        .split-text {
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .split-text span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100px) rotate(10deg);
+            animation: revealText 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes revealText {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotate(0);
+            }
+        }
+
+        /* Ripple effect on buttons */
+        .ripple-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .ripple-btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Count up animation */
+        .count-up {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Elastic bounce */
+        @keyframes elasticBounce {
+            0% {
+                transform: scale(0) translateY(50px);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.15) translateY(-10px);
+            }
+            75% {
+                transform: scale(0.95) translateY(5px);
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .elastic-bounce {
+            animation: elasticBounce 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* Slide and fade stagger */
+        .stagger-fade {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        /* 3D perspective cards */
+        .card-3d-hover {
+            transition: transform 0.5s ease;
+            transform-style: preserve-3d;
+        }
+
+        .card-3d-hover:hover {
+            transform: perspective(1000px) rotateX(10deg) translateY(-10px);
+        }
+
+        /* Wave animation for text */
+        .wave-text span {
+            display: inline-block;
+            animation: wave 1.5s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .wave-text span:nth-child(1) { animation-delay: 0s; }
+        .wave-text span:nth-child(2) { animation-delay: 0.1s; }
+        .wave-text span:nth-child(3) { animation-delay: 0.2s; }
+        .wave-text span:nth-child(4) { animation-delay: 0.3s; }
+        .wave-text span:nth-child(5) { animation-delay: 0.4s; }
+
+        /* Parallax layers */
+        .parallax-layer {
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Glow pulse on hover */
+        .glow-pulse-hover {
+            transition: all 0.3s ease;
+        }
+
+        .glow-pulse-hover:hover {
+            box-shadow: 0 0 30px rgba(200, 75, 0, 0.6),
+                        0 0 60px rgba(200, 75, 0, 0.4),
+                        0 0 90px rgba(200, 75, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Morphing border */
+        @keyframes morphBorder {
+            0%, 100% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+            50% {
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+            }
+        }
+
+        .morph-border {
+            animation: morphBorder 8s ease-in-out infinite;
+        }
+
+        /* Flip card effect */
+        .flip-card {
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Neon glow text */
+        .neon-glow {
+            text-shadow:
+                0 0 10px rgba(200, 75, 0, 0.8),
+                0 0 20px rgba(200, 75, 0, 0.8),
+                0 0 30px rgba(200, 75, 0, 0.8),
+                0 0 40px rgba(255, 183, 77, 0.8),
+                0 0 70px rgba(255, 183, 77, 0.8),
+                0 0 80px rgba(255, 183, 77, 0.8);
+            animation: flicker-neon 1.5s infinite alternate;
+        }
+
+        @keyframes flicker-neon {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow:
+                    0 0 10px rgba(200, 75, 0, 0.8),
+                    0 0 20px rgba(200, 75, 0, 0.8),
+                    0 0 30px rgba(200, 75, 0, 0.8),
+                    0 0 40px rgba(255, 183, 77, 0.8),
+                    0 0 70px rgba(255, 183, 77, 0.8);
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
+
+        /* Gradient border animation */
+        @keyframes gradientRotate {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .gradient-border {
+            background: linear-gradient(60deg, #C84B00, #FFB74D, #C84B00, #FFB74D);
+            background-size: 300% 300%;
+            animation: gradientRotate 3s ease infinite;
+        }
+
+        /* Scale pulse */
+        @keyframes scalePulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .scale-pulse {
+            animation: scalePulse 2s ease-in-out infinite;
+        }
+
+        /* Skew on hover */
+        .skew-hover {
+            transition: transform 0.3s ease;
+        }
+
+        .skew-hover:hover {
+            transform: skewY(-2deg) scale(1.02);
+        }
+
+        /* Spotlight effect */
+        .spotlight {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spotlight::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        .spotlight:hover::before {
+            opacity: 1;
+        }
+
+        /* Rotate 3D */
+        .rotate-3d {
+            animation: rotate3D 20s linear infinite;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes rotate3D {
+            0% {
+                transform: rotateY(0deg) rotateX(0deg);
+            }
+            100% {
+                transform: rotateY(360deg) rotateX(360deg);
+            }
+        }
+
+        /* ============ MOBILE / TOUCH RESPONSIVE LAYER ============ */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        .grid > * { min-width: 0; } /* long words/inputs can't push a column wider than the screen */
+        img, video, iframe { max-width: 100%; }
+        html { -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; }
+        input, select, textarea { font-size: 16px; } /* stops iOS auto-zoom on focus */
+        a, button { -webkit-tap-highlight-color: rgba(200, 75, 0, 0.15); touch-action: manipulation; }
+
+        /* Phones & tablets: always-readable header bar */
+        @media (max-width: 1023px) {
+            #navbar { background: rgba(255, 248, 231, 0.95); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); }
+        }
+
+        /* Phones & small tablets */
+        @media (max-width: 767px) {
+            .glass { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+            .parallax { background-attachment: scroll; }
+        }
+
+        /* Touch screens: no hover-only motion (it sticks after a tap) */
+        @media (hover: none) {
+            .hover-lift:hover { transform: none; }
+            .menu-card::before { display: none; }
+            .glow-pulse-hover:hover { transform: none; }
+            .group:hover img { transform: none; }
+        }
+
+        /* Respect reduced-motion settings */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-brown">
+
+    <!-- Loading Screen -->
+    <div id="loader" class="fixed inset-0 bg-brand-dark z-[9999] flex items-center justify-center">
+        <div class="text-center">
+            <div class="fire-logo mb-6">
+                <i data-lucide="flame" class="w-20 h-20 text-brand-orange mx-auto"></i>
+            </div>
+            <h2 class="text-brand-cream font-serif text-3xl mb-4">PAHADI DHABA</h2>
+            <div class="w-64 h-1 bg-brand-brown rounded-full overflow-hidden">
+                <div id="loading-bar" class="h-full bg-brand-orange rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="fire-logo">
+                    <i data-lucide="flame" class="w-8 h-8 sm:w-10 sm:h-10 text-brand-orange"></i>
+                </div>
+                <div>
+                    <h1 class="font-serif text-xl sm:text-2xl font-bold text-brand-dark group-hover:text-brand-orange transition-colors">
+                        PAHADI
+                    </h1>
+                    <p class="text-xs tracking-widest text-brand-brown uppercase">Dhaba & Cafe</p>
+                </div>
+            </a>
+
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="#about" class="text-sm font-medium hover:text-brand-orange transition-colors relative group">
+                    Overview
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-orange group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="#menu" class="text-sm font-medium hover:text-brand-orange transition-colors relative group">
+                    Menu
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-orange group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="#cabanas" class="text-sm font-medium hover:text-brand-orange transition-colors relative group">
+                    Cabanas
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-orange group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="#gallery" class="text-sm font-medium hover:text-brand-orange transition-colors relative group">
+                    Gallery
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-orange group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="#reviews" class="text-sm font-medium hover:text-brand-orange transition-colors relative group">
+                    Reviews
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-orange group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="#contact" class="text-sm font-medium hover:text-brand-orange transition-colors relative group">
+                    Visit Us
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-orange group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="tel:+917978276380" class="flex items-center gap-2 bg-brand-orange text-white px-6 py-3 rounded-full hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                    <span class="font-semibold">+91 79782 76380</span>
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="lg:hidden text-brand-dark p-2 -mr-2" aria-label="Open menu">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-dark z-[60] transform translate-x-full transition-transform duration-500 lg:hidden">
+        <div class="flex flex-col items-center justify-center h-full gap-8 text-brand-cream">
+            <button id="close-menu" class="absolute top-4 right-4 p-3" aria-label="Close menu">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            <a href="#about" class="mobile-link text-2xl font-serif py-2 hover:text-brand-orange transition-colors">Overview</a>
+            <a href="#menu" class="mobile-link text-2xl font-serif py-2 hover:text-brand-orange transition-colors">Menu</a>
+            <a href="#cabanas" class="mobile-link text-2xl font-serif py-2 hover:text-brand-orange transition-colors">Cabanas</a>
+            <a href="#gallery" class="mobile-link text-2xl font-serif py-2 hover:text-brand-orange transition-colors">Gallery</a>
+            <a href="#reviews" class="mobile-link text-2xl font-serif py-2 hover:text-brand-orange transition-colors">Reviews</a>
+            <a href="#contact" class="mobile-link text-2xl font-serif py-2 hover:text-brand-orange transition-colors">Visit Us</a>
+            <a href="tel:+917978276380" class="bg-brand-orange text-white px-8 py-4 rounded-full text-lg font-semibold mt-4">
+                Call Now
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen lg:h-screen lg:min-h-[700px] pt-28 pb-20 lg:py-0 flex items-center justify-center overflow-hidden">
+        <!-- Background Video/Image -->
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2000"
+                 alt="Pahadi Dhaba Ambiance"
+                 class="w-full h-full object-cover"
+                 id="hero-bg">
+            <div class="video-overlay"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 container mx-auto px-6 text-center">
+            <div data-aos="fade-down" data-aos-duration="1000">
+                <span class="inline-block bg-brand-orange/90 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm">
+                    🔥 FINE DINING, CAFE & OUTDOOR GATHERINGS
+                </span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-5 sm:mb-6 leading-tight"
+                data-aos="fade-up"
+                data-aos-duration="1200"
+                data-aos-delay="200">
+                Experience The<br>
+                <span class="gradient-text">Rustic Charm</span><br>
+                Of The Hills
+            </h1>
+
+            <p class="text-base sm:text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8 font-light leading-relaxed"
+               data-aos="fade-up"
+               data-aos-duration="1200"
+               data-aos-delay="400">
+                Gather with friends and family over slow-cooked Champaran Handi Mutton, signature Barwan Tangdi Kabab, and refreshing cafe mocktails in private bamboo cabanas.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                 data-aos="fade-up"
+                 data-aos-duration="1200"
+                 data-aos-delay="600">
+                <a href="#menu" class="magnetic-btn ripple-btn glow-pulse-hover bg-brand-orange text-white px-8 py-4 sm:px-10 sm:py-5 rounded-full text-base sm:text-lg font-bold hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 flex items-center justify-center w-full sm:w-auto gap-3 group">
+                    <span>Explore Menu</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-2 transition-transform"></i>
+                </a>
+                <a href="#cabanas" class="magnetic-btn ripple-btn glass text-brand-dark px-8 py-4 sm:px-10 sm:py-5 rounded-full text-base sm:text-lg font-bold hover:bg-white transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 flex items-center justify-center w-full sm:w-auto gap-3">
+                    <i data-lucide="tent" class="w-5 h-5"></i>
+                    <span>Reserve Cabana</span>
+                </a>
+            </div>
+
+            <!-- Quick Info Bar -->
+            <div class="glass mt-8 sm:mt-12 inline-flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-6 px-5 sm:px-8 py-4 rounded-3xl sm:rounded-full text-left"
+                 data-aos="fade-up"
+                 data-aos-duration="1200"
+                 data-aos-delay="800">
+                <div class="flex items-center gap-2 text-brand-dark">
+                    <i data-lucide="clock" class="w-5 h-5 text-brand-orange"></i>
+                    <span class="font-semibold">Open Now • 11:00 AM – 11:30 PM</span>
+                </div>
+                <div class="flex items-center gap-2 text-brand-dark">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-brand-gold"></i>
+                    <span class="font-semibold">Happy Hour & Cabana Dining Active</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden lg:block">
+            <i data-lucide="chevron-down" class="w-8 h-8 text-white"></i>
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <section class="bg-brand-dark py-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
+                <div data-aos="fade-up" data-aos-delay="0" class="elastic-bounce">
+                    <div class="flex items-center justify-center gap-2 mb-2">
+                        <span class="star-animated text-brand-gold">★</span>
+                        <span class="star-animated text-brand-gold">★</span>
+                        <span class="star-animated text-brand-gold">★</span>
+                        <span class="star-animated text-brand-gold">★</span>
+                        <span class="star-animated text-brand-gold">★</span>
+                    </div>
+                    <p class="text-2xl sm:text-3xl font-bold text-brand-gold count-up" data-target="4.6">0</p>
+                    <p class="text-brand-cream/70 text-sm mt-1">Google Rating</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100" class="elastic-bounce">
+                    <p class="text-2xl sm:text-3xl font-bold text-brand-orange count-up" data-target="1266">0</p>
+                    <p class="text-brand-cream/70 text-sm mt-1">Happy Patrons</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200" class="elastic-bounce">
+                    <p class="text-2xl sm:text-3xl font-bold text-brand-gold count-up" data-target="65">0</p>
+                    <p class="text-brand-cream/70 text-sm mt-1">Fine Ambiance Reports</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300" class="elastic-bounce">
+                    <p class="text-2xl sm:text-3xl font-bold text-brand-orange">₹400-₹1,200</p>
+                    <p class="text-brand-cream/70 text-sm mt-1">Per Person</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 sm:py-24 bg-brand-cream">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <span class="inline-block bg-brand-orange text-white px-4 py-2 rounded-full text-xs font-bold mb-6 uppercase tracking-wider">
+                        🔥 Chef's Culinary Showcase
+                    </span>
+                    <h2 class="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-6 leading-tight">
+                        Our Signature<br>
+                        <span class="text-brand-orange">Dhaba & Cafe Menu</span>
+                    </h2>
+                    <p class="text-lg text-brand-brown/80 mb-6 leading-relaxed">
+                        Carefully curated from traditional earthen-pot clay ovens to sizzling tandoor grills and refreshing mocktails.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-brand-orange/10 p-3 rounded-lg">
+                                <i data-lucide="flame" class="w-6 h-6 text-brand-orange"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Slow-Cooked Ahuna Mutton Curry</h3>
+                                <p class="text-brand-brown/70">Legendary earthen claypot mutton with whole garlic and cold-pressed mustard oil</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-brand-gold/20 p-3 rounded-lg">
+                                <i data-lucide="sparkles" class="w-6 h-6 text-brand-gold"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Barwan Tangdi Kabab</h3>
+                                <p class="text-brand-brown/70">Juicy chicken drumsticks stuffed with spiced minced chicken and dry fruits</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-brand-orange/10 p-3 rounded-lg">
+                                <i data-lucide="tent" class="w-6 h-6 text-brand-orange"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Private Bamboo Cabanas</h3>
+                                <p class="text-brand-brown/70">Thatched gazebo surrounded by lush greenery with bonfire ambience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left" data-aos-duration="1000" class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="img-zoom rounded-2xl overflow-hidden hover-lift">
+                            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=600"
+                                 alt="Food"
+                                 class="w-full h-64 object-cover">
+                        </div>
+                        <div class="img-zoom rounded-2xl overflow-hidden hover-lift mt-8">
+                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=600"
+                                 alt="Ambiance"
+                                 class="w-full h-64 object-cover">
+                        </div>
+                        <div class="img-zoom rounded-2xl overflow-hidden hover-lift">
+                            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=600"
+                                 alt="Dining"
+                                 class="w-full h-64 object-cover">
+                        </div>
+                        <div class="img-zoom rounded-2xl overflow-hidden hover-lift mt-8">
+                            <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=600"
+                                 alt="Outdoor"
+                                 class="w-full h-64 object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Floating badge -->
+                    <div class="absolute -bottom-6 left-2 sm:-left-6 bg-brand-dark text-white p-4 sm:p-6 rounded-2xl shadow-2xl floating" data-aos="zoom-in" data-aos-delay="500">
+                        <p class="text-sm mb-2 text-brand-gold">📍 Chandaka Hills</p>
+                        <p class="font-bold text-lg">26°C Breezy Evening</p>
+                        <p class="text-xs text-white/70 mt-1">Outdoor Cabanas Illuminated</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Highlights -->
+    <section id="menu" class="py-16 sm:py-24 bg-white relative overflow-hidden">
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-brand-orange/10 text-brand-orange px-6 py-2 rounded-full text-sm font-bold mb-4 uppercase tracking-wider">
+                    Our Signature Dishes
+                </span>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-6">
+                    Chef's Special Menu
+                </h2>
+                <p class="text-xl text-brand-brown/70 max-w-2xl mx-auto">
+                    From traditional clay ovens to modern cafe delights
+                </p>
+            </div>
+
+            <!-- Menu Categories -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-10 sm:mb-12">
+                <button class="menu-filter active border border-brand-orange px-4 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base rounded-full font-semibold transition-all duration-300 bg-brand-orange text-white" data-category="all">
+                    All Dishes
+                </button>
+                <button class="menu-filter border border-brand-orange/40 px-4 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base rounded-full font-semibold transition-all duration-300 hover:bg-brand-orange hover:text-white" data-category="champaran">
+                    Champaran & Handi
+                </button>
+                <button class="menu-filter border border-brand-orange/40 px-4 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base rounded-full font-semibold transition-all duration-300 hover:bg-brand-orange hover:text-white" data-category="kababs">
+                    Starters & Kababs
+                </button>
+                <button class="menu-filter border border-brand-orange/40 px-4 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base rounded-full font-semibold transition-all duration-300 hover:bg-brand-orange hover:text-white" data-category="curry">
+                    Royal Curries
+                </button>
+                <button class="menu-filter border border-brand-orange/40 px-4 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base rounded-full font-semibold transition-all duration-300 hover:bg-brand-orange hover:text-white" data-category="biryani">
+                    Biryani & Breads
+                </button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Menu Item 1 -->
+                <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift group" data-category="champaran">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?q=80&w=600"
+                             alt="Mutton Champaran"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('bg-gradient-to-br','from-brand-brown','to-brand-orange');"
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 bg-brand-orange text-white px-4 py-2 rounded-full text-xs font-bold flex items-center gap-2">
+                            <span>🔥</span>
+                            <span>CHEF'S SPECIAL</span>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                            <span>🌶️</span>
+                            <span>SPICY</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-2xl font-serif font-bold group-hover:text-brand-orange transition-colors">
+                                Mutton Champaran
+                            </h3>
+                            <span class="text-brand-orange font-bold text-xl">★★★</span>
+                        </div>
+                        <p class="text-brand-brown/70 mb-4 leading-relaxed">
+                            The legendary slow-cooked earthen claypot mutton cooked with whole garlic bulbs, cold-pressed mustard oil, and sealed dough.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2 text-sm text-brand-brown/60">
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                <span>35 mins</span>
+                                <span>•</span>
+                                <span>500g Handi (Serves 2)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 2 -->
+                <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift group" data-category="kababs">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=600"
+                             alt="Barwan Tangdi Kabab"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('bg-gradient-to-br','from-brand-brown','to-brand-orange');"
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 bg-brand-gold text-brand-dark px-4 py-2 rounded-full text-xs font-bold flex items-center gap-2">
+                            <span>⭐</span>
+                            <span>MOST POPULAR</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-2xl font-serif font-bold group-hover:text-brand-orange transition-colors">
+                                Barwan Tangdi Kabab
+                            </h3>
+                            <span class="text-brand-orange font-bold text-xl">★★★</span>
+                        </div>
+                        <p class="text-brand-brown/70 mb-4 leading-relaxed">
+                            Juicy chicken drumsticks stuffed with spiced minced chicken, dry fruits, and char-grilled in tandoor with aromatic hill spices.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2 text-sm text-brand-brown/60">
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                <span>22 mins</span>
+                                <span>•</span>
+                                <span>4 Pcs (Serves 2-3)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 3 -->
+                <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift group" data-category="kababs">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1725393325387-07f0d4951528?q=80&w=600"
+                             alt="Tandoori Pomfret"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('bg-gradient-to-br','from-brand-brown','to-brand-orange');"
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 bg-blue-500 text-white px-4 py-2 rounded-full text-xs font-bold flex items-center gap-2">
+                            <span>🐟</span>
+                            <span>SEAFOOD SPECIAL</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-2xl font-serif font-bold group-hover:text-brand-orange transition-colors">
+                                Tandoori Pomfret
+                            </h3>
+                            <span class="text-brand-orange font-bold text-xl">★★★</span>
+                        </div>
+                        <p class="text-brand-brown/70 mb-4 leading-relaxed">
+                            Fresh pomfret marinated in coastal spices and grilled to perfection in our traditional tandoor.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2 text-sm text-brand-brown/60">
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                <span>18 mins</span>
+                                <span>•</span>
+                                <span>Full Fish</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 4 -->
+                <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift group" data-category="biryani">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=600"
+                             alt="Chicken Dum Biryani"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('bg-gradient-to-br','from-brand-brown','to-brand-orange');"
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-2xl font-serif font-bold group-hover:text-brand-orange transition-colors">
+                                Chicken Dum Biryani
+                            </h3>
+                            <span class="text-brand-orange font-bold text-xl">★★★</span>
+                        </div>
+                        <p class="text-brand-brown/70 mb-4 leading-relaxed">
+                            Aromatic basmati rice layered with succulent chicken pieces, slow-cooked in a sealed handi.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2 text-sm text-brand-brown/60">
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                <span>30 mins</span>
+                                <span>•</span>
+                                <span>Serves 1-2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 5 -->
+                <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift group" data-category="curry">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?q=80&w=600"
+                             alt="Kadhai Chicken"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('bg-gradient-to-br','from-brand-brown','to-brand-orange');"
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-2xl font-serif font-bold group-hover:text-brand-orange transition-colors">
+                                Kadhai Chicken
+                            </h3>
+                            <span class="text-brand-orange font-bold text-xl">★★★</span>
+                        </div>
+                        <p class="text-brand-brown/70 mb-4 leading-relaxed">
+                            Tender chicken cooked in a traditional kadhai with bell peppers, tomatoes, and aromatic spices.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2 text-sm text-brand-brown/60">
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                <span>25 mins</span>
+                                <span>•</span>
+                                <span>Serves 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 6 -->
+                <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift group" data-category="curry">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=600"
+                             alt="Paneer Butter Masala"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('bg-gradient-to-br','from-brand-brown','to-brand-orange');"
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 bg-green-500 text-white px-4 py-2 rounded-full text-xs font-bold flex items-center gap-2">
+                            <span>🌱</span>
+                            <span>PURE VEG</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-2xl font-serif font-bold group-hover:text-brand-orange transition-colors">
+                                Paneer Butter Masala
+                            </h3>
+                            <span class="text-brand-orange font-bold text-xl">★★★</span>
+                        </div>
+                        <p class="text-brand-brown/70 mb-4 leading-relaxed">
+                            Cottage cheese cubes simmered in rich tomato gravy with butter and aromatic spices.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2 text-sm text-brand-brown/60">
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                <span>20 mins</span>
+                                <span>•</span>
+                                <span>Serves 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center gap-3 bg-brand-orange text-white px-6 py-4 sm:px-10 sm:py-5 rounded-full text-base sm:text-lg font-bold hover:bg-brand-dark transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group">
+                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                    <span>View Full Menu (PDF)</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-2 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cabanas Section -->
+    <section id="cabanas" class="py-16 sm:py-24 bg-brand-cream relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-brand-orange/10 text-brand-orange px-6 py-2 rounded-full text-sm font-bold mb-4 uppercase tracking-wider">
+                    🏕️ Exclusive Dining Experience
+                </span>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-6">
+                    Reserve Your Private<br>
+                    <span class="text-brand-orange">Table or Cabana</span>
+                </h2>
+                <p class="text-xl text-brand-brown/70 max-w-2xl mx-auto">
+                    Choose your preferred seating zone — from breezy outdoor cabanas to our air-conditioned royal fine dining hall.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Outdoor Hill Cabana -->
+                <div class="group relative rounded-3xl overflow-hidden hover-lift" data-aos="fade-up" data-aos-delay="0">
+                    <div class="img-zoom h-96">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800"
+                             alt="Outdoor Hill Cabana"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute top-4 left-4 bg-brand-orange text-white px-4 py-2 rounded-full text-xs font-bold uppercase">
+                        Most Popular
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/50 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                        <h3 class="text-3xl font-serif font-bold mb-2">Outdoor Hill Cabana</h3>
+                        <p class="text-white/90 mb-4">Private thatched gazebo surrounded by lush greenery</p>
+                        <div class="flex items-center gap-6 text-sm mb-4">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="flame" class="w-4 h-4"></i>
+                                <span>Bonfire Ambience</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="wind" class="w-4 h-4"></i>
+                                <span>Hill Breeze</span>
+                            </div>
+                        </div>
+                        <button class="reserve-cabana-btn bg-white text-brand-dark px-6 py-3 rounded-full font-bold hover:bg-brand-orange hover:text-white transition-all duration-300">
+                            Reserve Cabana
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Royal AC Dining Hall -->
+                <div class="group relative rounded-3xl overflow-hidden hover-lift" data-aos="fade-up" data-aos-delay="100">
+                    <div class="img-zoom h-96">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800"
+                             alt="Royal AC Dining Hall"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute top-4 left-4 bg-blue-500 text-white px-4 py-2 rounded-full text-xs font-bold uppercase">
+                        Family & Corporate
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/50 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                        <h3 class="text-3xl font-serif font-bold mb-2">Royal AC Dining Hall</h3>
+                        <p class="text-white/90 mb-4">Plush upholstered seating with climate control</p>
+                        <div class="flex items-center gap-6 text-sm mb-4">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="wind" class="w-4 h-4"></i>
+                                <span>AC Comfort</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="users" class="w-4 h-4"></i>
+                                <span>Large Groups</span>
+                            </div>
+                        </div>
+                        <button class="reserve-table-btn bg-white text-brand-dark px-6 py-3 rounded-full font-bold hover:bg-brand-orange hover:text-white transition-all duration-300">
+                            Reserve Table
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Booking Form -->
+            <div class="glass rounded-3xl p-5 sm:p-8 md:p-12 mt-10 sm:mt-12" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-center mb-8">
+                    <h3 class="text-3xl font-serif font-bold mb-2">Quick Table Reservation</h3>
+                    <p class="text-brand-brown/70">Select your date, time, and party size</p>
+                </div>
+
+                <form class="grid md:grid-cols-4 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold mb-2 text-brand-dark">Date</label>
+                        <div class="relative">
+                            <input type="date"
+                                   id="reservation-date"
+                                   class="w-full px-4 py-4 rounded-xl border-2 border-brand-brown/20 focus:border-brand-orange outline-none transition-all duration-300 bg-white cursor-pointer"
+                                   style="color-scheme: light;">
+                            <i data-lucide="calendar" class="absolute right-4 top-4 w-5 h-5 text-brand-brown/40 pointer-events-none"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2 text-brand-dark">Time</label>
+                        <div class="relative">
+                            <select class="w-full px-4 py-4 rounded-xl border-2 border-brand-brown/20 focus:border-brand-orange outline-none transition-all duration-300 bg-white appearance-none">
+                                <option>Tonight • 07:30 PM</option>
+                                <option>12:00 PM</option>
+                                <option>01:00 PM</option>
+                                <option>07:00 PM</option>
+                                <option>08:00 PM</option>
+                                <option>09:00 PM</option>
+                            </select>
+                            <i data-lucide="clock" class="absolute right-4 top-4 w-5 h-5 text-brand-brown/40"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2 text-brand-dark">Guests</label>
+                        <div class="relative">
+                            <select class="w-full px-4 py-4 rounded-xl border-2 border-brand-brown/20 focus:border-brand-orange outline-none transition-all duration-300 bg-white appearance-none">
+                                <option>3-4 Friends (Cafe Gazebo)</option>
+                                <option>2 People</option>
+                                <option>5-6 People</option>
+                                <option>7-10 People</option>
+                                <option>10+ People</option>
+                            </select>
+                            <i data-lucide="users" class="absolute right-4 top-4 w-5 h-5 text-brand-brown/40"></i>
+                        </div>
+                    </div>
+
+                    <div class="flex items-end">
+                        <button type="button" class="w-full bg-brand-orange text-white px-6 py-4 rounded-xl font-bold hover:bg-brand-dark transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                            Check & Reserve
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 sm:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-brand-orange/10 text-brand-orange px-6 py-2 rounded-full text-sm font-bold mb-4 uppercase tracking-wider">
+                    📸 Pahadi Ambience & Food Gallery
+                </span>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-6">
+                    Immerse In The<br>
+                    <span class="text-brand-orange">Pahadi Atmosphere</span>
+                </h2>
+                <p class="text-xl text-brand-brown/70 max-w-2xl mx-auto">
+                    Explore our lush outdoor dining huts, crackling tandoor grills, evening illumination, and signature dishes.
+                </p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-span-2 row-span-2 img-zoom rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800"
+                         alt="Night Glow with Fairy Lights"
+                         class="w-full h-full object-cover">
+                </div>
+                <div class="img-zoom rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=400"
+                         alt="Acoustic Music"
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="img-zoom rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=400"
+                         alt="Cafe Delicacy"
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="img-zoom rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1525610553991-5690558ecad0?q=80&w=400"
+                         alt="Filter Coffee"
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="img-zoom rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=400"
+                         alt="Interior Dining"
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="col-span-2 img-zoom rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=800"
+                         alt="Restaurant Interior"
+                         class="w-full h-64 object-cover">
+                </div>
+            </div>
+
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="#" class="inline-flex items-center gap-3 border-2 border-brand-orange text-brand-orange px-6 py-4 sm:px-10 sm:py-5 rounded-full text-base sm:text-lg font-bold hover:bg-brand-orange hover:text-white transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <i data-lucide="images" class="w-5 h-5"></i>
+                    <span>View All 50+ Photos</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-16 sm:py-24 bg-brand-cream">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-brand-gold/20 text-brand-dark px-6 py-2 rounded-full text-sm font-bold mb-4 uppercase tracking-wider">
+                    ⭐ Guest Experiences
+                </span>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-6">
+                    Loved By Over 1,266+<br>
+                    <span class="text-brand-orange">Patrons in Bhubaneswar</span>
+                </h2>
+                <p class="text-xl text-brand-brown/70 max-w-2xl mx-auto">
+                    Rated 4.6 Stars across Google. Here is what real food lovers, families, and techies from Infocity have to say.
+                </p>
+            </div>
+
+            <!-- Rating Breakdown -->
+            <div class="glass rounded-3xl p-5 sm:p-8 md:p-12 mb-10 sm:mb-12 max-w-5xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+                    <div class="text-center md:text-left">
+                        <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
+                            <span class="text-6xl font-bold text-brand-orange">4.6</span>
+                            <div>
+                                <div class="flex gap-1 mb-1">
+                                    <span class="text-brand-gold text-2xl">★</span>
+                                    <span class="text-brand-gold text-2xl">★</span>
+                                    <span class="text-brand-gold text-2xl">★</span>
+                                    <span class="text-brand-gold text-2xl">★</span>
+                                    <span class="text-brand-gold text-2xl">★</span>
+                                </div>
+                                <p class="text-sm text-brand-brown/70">Based on 1,266+ Google Ratings</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 text-green-600 font-semibold">
+                            <i data-lucide="check-circle" class="w-5 h-5"></i>
+                            <span>Google Verified Business Profile</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm font-bold w-4">5</span>
+                            <div class="flex-grow h-3 bg-brand-brown/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-brand-gold rounded-full" style="width: 79%"></div>
+                            </div>
+                            <span class="text-sm font-bold w-12 text-right">79%</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm font-bold w-4">4</span>
+                            <div class="flex-grow h-3 bg-brand-brown/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-brand-gold rounded-full" style="width: 14%"></div>
+                            </div>
+                            <span class="text-sm font-bold w-12 text-right">14%</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm font-bold w-4">3</span>
+                            <div class="flex-grow h-3 bg-brand-brown/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-brand-gold rounded-full" style="width: 4%"></div>
+                            </div>
+                            <span class="text-sm font-bold w-12 text-right">4%</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm font-bold w-4">2</span>
+                            <div class="flex-grow h-3 bg-brand-brown/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-brand-gold rounded-full" style="width: 2%"></div>
+                            </div>
+                            <span class="text-sm font-bold w-12 text-right">2%</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm font-bold w-4">1</span>
+                            <div class="flex-grow h-3 bg-brand-brown/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-brand-gold rounded-full" style="width: 1%"></div>
+                            </div>
+                            <span class="text-sm font-bold w-12 text-right">1%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <button class="bg-brand-orange text-white px-8 py-4 rounded-full font-bold hover:bg-brand-dark transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        Share Your Experience
+                    </button>
+                    <p class="text-sm text-brand-brown/60 mt-2">No sign-up needed</p>
+                </div>
+            </div>
+
+            <!-- Review Cards -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift" data-aos="fade-up" data-aos-delay="0">
+                    <div class="flex gap-1 text-brand-gold mb-4">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <p class="text-brand-brown mb-4 leading-relaxed">
+                        "The Champaran Mutton was absolutely divine! Perfectly cooked and the ambience of the outdoor cabana made it an unforgettable evening."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-brand-orange/20 rounded-full flex items-center justify-center font-bold text-brand-orange">
+                            RK
+                        </div>
+                        <div>
+                            <p class="font-bold">Rajesh Kumar</p>
+                            <p class="text-sm text-brand-brown/60">2 weeks ago</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex gap-1 text-brand-gold mb-4">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <p class="text-brand-brown mb-4 leading-relaxed">
+                        "Best place for corporate dinners! The Royal AC Dining Hall is spacious and the service is impeccable. Highly recommended!"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-brand-orange/20 rounded-full flex items-center justify-center font-bold text-brand-orange">
+                            PM
+                        </div>
+                        <div>
+                            <p class="font-bold">Priya Mishra</p>
+                            <p class="text-sm text-brand-brown/60">1 month ago</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex gap-1 text-brand-gold mb-4">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <p class="text-brand-brown mb-4 leading-relaxed">
+                        "The fairy lights and bonfire seating create such a romantic atmosphere. Perfect for date nights. Food quality is top-notch!"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-brand-orange/20 rounded-full flex items-center justify-center font-bold text-brand-orange">
+                            AS
+                        </div>
+                        <div>
+                            <p class="font-bold">Arjun Sahoo</p>
+                            <p class="text-sm text-brand-brown/60">3 weeks ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Location Section -->
+    <section id="contact" class="py-16 sm:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-brand-orange/10 text-brand-orange px-6 py-2 rounded-full text-sm font-bold mb-4 uppercase tracking-wider">
+                    📍 Find Us In Bhubaneswar
+                </span>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-6">
+                    Visit<br>
+                    <span class="text-brand-orange">PAHADI DHABA AND CAFE</span>
+                </h2>
+                <p class="text-xl text-brand-brown/70 max-w-2xl mx-auto">
+                    Located right along the serene Chandaka Industrial Estate corridor, just minutes from Patia, Infocity, and KIIT University.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Map + Directions -->
+                <div data-aos="fade-right">
+                    <div class="glass rounded-3xl p-2 h-full flex flex-col gap-2">
+                        <div class="rounded-2xl overflow-hidden flex-grow min-h-[320px] bg-brand-brown/10">
+                            <iframe id="restaurant-map"
+                                    title="Pahadi Dhaba & Cafe on Google Maps"
+                                    class="w-full h-full min-h-[320px] border-0"
+                                    loading="lazy"
+                                    allowfullscreen
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    src="https://www.google.com/maps?q=Pahadi+Dhaba+and+Cafe%2C+Plot+No.583%2C+Chandaka+Industrial+Estate%2C+Patharagadia%2C+Bhubaneswar%2C+Odisha+751024&output=embed"></iframe>
+                        </div>
+
+                        <div class="bg-white rounded-2xl p-5">
+                            <h3 class="font-serif font-bold text-xl mb-1">Get Directions</h3>
+                            <p class="text-sm text-brand-brown/60 mb-4">Enter where you are starting from, or use your current location.</p>
+
+                            <label for="directions-origin" class="block text-sm font-bold mb-2 text-brand-dark">Your starting point</label>
+                            <div class="flex flex-col sm:flex-row gap-3 mb-3">
+                                <input type="text" id="directions-origin"
+                                       placeholder="Hotel, area or landmark"
+                                       class="flex-grow px-4 py-3 rounded-xl border-2 border-brand-brown/20 focus:border-brand-orange outline-none transition-all bg-white">
+                                <button type="button" id="use-my-location"
+                                        class="px-4 py-3 rounded-xl border-2 border-brand-orange text-brand-orange font-semibold hover:bg-brand-orange hover:text-white transition-all flex items-center justify-center gap-2">
+                                    <i data-lucide="locate-fixed" class="w-4 h-4"></i>
+                                    <span>Use my location</span>
+                                </button>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 mb-4" id="travel-modes">
+                                <button type="button" data-mode="driving" class="travel-mode px-4 py-3 rounded-full text-sm font-semibold bg-brand-orange text-white">🚗 Car</button>
+                                <button type="button" data-mode="two-wheeler" class="travel-mode px-4 py-3 rounded-full text-sm font-semibold bg-brand-brown/10 text-brand-dark">🛵 Bike</button>
+                                <button type="button" data-mode="transit" class="travel-mode px-4 py-3 rounded-full text-sm font-semibold bg-brand-brown/10 text-brand-dark">🚌 Transit</button>
+                                <button type="button" data-mode="walking" class="travel-mode px-4 py-3 rounded-full text-sm font-semibold bg-brand-brown/10 text-brand-dark">🚶 Walk</button>
+                            </div>
+
+                            <button type="button" id="get-directions-btn"
+                                    class="w-full bg-brand-orange text-white px-6 py-4 rounded-xl font-bold hover:bg-brand-dark transition-all duration-300 flex items-center justify-center gap-2">
+                                <i data-lucide="navigation" class="w-5 h-5"></i>
+                                <span>Get Directions on Google Maps</span>
+                            </button>
+                            <p id="directions-status" class="text-sm mt-3 min-h-[1.25rem]" role="status" aria-live="polite"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div data-aos="fade-left">
+                    <div class="space-y-8">
+                        <!-- Address -->
+                        <div class="glass rounded-2xl p-8">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-brand-orange/10 p-4 rounded-xl">
+                                    <i data-lucide="map-pin" class="w-6 h-6 text-brand-orange"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-xl mb-2">Our Address</h3>
+                                    <p id="address-text" class="text-brand-brown/70 leading-relaxed">
+                                        Plot No.583, 158, Road,<br>
+                                        Chandaka Industrial Estate, Patharagadia,<br>
+                                        Bhubaneswar, Odisha 751024
+                                    </p>
+                                    <a href="#" id="copy-address" class="inline-flex items-center gap-2 text-brand-orange font-semibold mt-3 py-2 hover:gap-3 transition-all">
+                                        <span>Copy Address</span>
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Operating Hours -->
+                        <div class="glass rounded-2xl p-8">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-green-500/10 p-4 rounded-xl">
+                                    <i data-lucide="clock" class="w-6 h-6 text-green-600"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <h3 class="font-bold text-xl mb-2">Operating Hours</h3>
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-brand-brown/70">Monday – Sunday</span>
+                                            <span class="font-bold text-green-600">11:00 AM – 11:30 PM</span>
+                                        </div>
+                                        <div class="text-sm text-brand-brown/60">
+                                            <span class="inline-block bg-green-500/10 text-green-700 px-3 py-1 rounded-full mr-2">Lunch</span>
+                                            <span class="inline-block bg-brand-orange/10 text-brand-orange px-3 py-1 rounded-full mr-2">Dinner</span>
+                                            <span class="inline-block bg-brand-gold/20 text-brand-dark px-3 py-1 rounded-full">Late Evening Cafe</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nearby Landmarks -->
+                        <div class="glass rounded-2xl p-8">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-blue-500/10 p-4 rounded-xl">
+                                    <i data-lucide="navigation" class="w-6 h-6 text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-xl mb-2">Nearby Landmarks</h3>
+                                    <p class="text-brand-brown/70">
+                                        5 mins from KIIT Square & Infocity Patia, on the picturesque scenic route toward Chandaka Elephant Reserve.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Parking -->
+                        <div class="glass rounded-2xl p-8">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-brand-orange/10 p-4 rounded-xl">
+                                    <i data-lucide="car" class="w-6 h-6 text-brand-orange"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-xl mb-2">Valet & Parking</h3>
+                                    <p class="text-brand-brown/70">
+                                        Ample free parking available for 50+ four-wheelers and two-wheelers.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="bg-brand-dark text-white rounded-3xl p-6 sm:p-12 mt-10 sm:mt-12 text-center" data-aos="fade-up">
+                <h3 class="text-3xl font-serif font-bold mb-4">Table Reservations & Delivery</h3>
+                <p class="text-white/80 mb-8 max-w-2xl mx-auto">
+                    Call us directly for priority cabana table booking & takeout inquiries
+                </p>
+                <a href="tel:+917978276380" class="inline-flex items-center justify-center w-full sm:w-auto gap-3 sm:gap-4 bg-brand-orange text-white px-5 py-4 sm:px-12 sm:py-6 rounded-full text-xl sm:text-2xl font-bold hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                    <i data-lucide="phone" class="w-6 h-6 sm:w-8 sm:h-8"></i>
+                    <span>+91 79782 76380</span>
+                </a>
+                <p class="text-sm text-white/60 mt-4">Available during business hours</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="fire-logo">
+                            <i data-lucide="flame" class="w-10 h-10 text-brand-orange"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-serif text-2xl font-bold">PAHADI DHABA</h2>
+                            <p class="text-xs tracking-widest text-brand-gold uppercase">& Cafe • Bhubaneswar</p>
+                        </div>
+                    </div>
+                    <p class="text-white/70 mb-6 leading-relaxed">
+                        Bhubaneswar's premier rustic hillside fine-dining destination. Renowned for slow-cooked Champaran Handi Mutton, Barwan Tangdi Kababs, and private outdoor cabanas.
+                    </p>
+                    <div class="flex gap-1 text-brand-gold mb-2">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <p class="text-sm text-white/60">4.6 (1,266+ Google Reviews)</p>
+                </div>
+
+                <!-- Quick Navigation -->
+                <div>
+                    <h3 class="font-bold text-lg mb-6 text-brand-gold">Quick Navigation</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="inline-block py-1.5 text-white/70 hover:text-brand-orange transition-colors">Overview & Highlights</a></li>
+                        <li><a href="#menu" class="inline-block py-1.5 text-white/70 hover:text-brand-orange transition-colors">Digital Dhaba Menu</a></li>
+                        <li><a href="#cabanas" class="inline-block py-1.5 text-white/70 hover:text-brand-orange transition-colors">Reserve Cabana or Table</a></li>
+                        <li><a href="#gallery" class="inline-block py-1.5 text-white/70 hover:text-brand-orange transition-colors">Video Reels & Photos</a></li>
+                        <li><a href="#reviews" class="inline-block py-1.5 text-white/70 hover:text-brand-orange transition-colors">Customer Google Reviews</a></li>
+                        <li><a href="#contact" class="inline-block py-1.5 text-white/70 hover:text-brand-orange transition-colors">Directions & Map</a></li>
+                    </ul>
+                </div>
+
+                <!-- Visit & Timings -->
+                <div>
+                    <h3 class="font-bold text-lg mb-6 text-brand-gold">Visit & Timings</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-sm text-white/60 mb-1">Open 7 Days a Week</p>
+                            <p class="font-bold">11:00 AM – 11:30 PM</p>
+                            <p class="text-sm text-brand-gold mt-1">Lunch • Dinner • Happy Hours Active</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-white/60 mb-1">Plot No.583, 158, Road</p>
+                            <p class="text-white/90">Chandaka Industrial Estate, Patharagadia, Bhubaneswar, Odisha 751024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Direct Contact -->
+                <div>
+                    <h3 class="font-bold text-lg mb-6 text-brand-gold">Direct Contact</h3>
+                    <div class="space-y-4">
+                        <a href="tel:+917978276380" class="flex items-center gap-3 text-white hover:text-brand-orange transition-colors group">
+                            <div class="bg-brand-orange/20 p-3 rounded-lg group-hover:bg-brand-orange transition-colors">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-white/60">Call Dhaba</p>
+                                <p class="font-bold">+91 79782 76380</p>
+                            </div>
+                        </a>
+                        <p class="text-sm text-white/70">Call for priority cabana table booking & takeout inquiries.</p>
+
+                        <div class="pt-4">
+                            <p class="text-sm text-white/60 mb-3">Follow Us</p>
+                            <div class="flex gap-3">
+                                <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-brand-orange transition-colors">
+                                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                                </a>
+                                <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-brand-orange transition-colors">
+                                    <i data-lucide="facebook" class="w-5 h-5"></i>
+                                </a>
+                                <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-brand-orange transition-colors">
+                                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/60 text-sm">
+                    © 2026 Pahadi Dhaba & Cafe. All rights reserved.
+                </p>
+                <div class="flex gap-6 text-sm text-white/60">
+                    <a href="#" class="hover:text-brand-orange transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand-orange transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-brand-orange transition-colors">Parties & Group Banquets</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-top" class="fixed bottom-5 right-5 sm:bottom-8 sm:right-8 bg-brand-orange text-white p-3 sm:p-4 rounded-full shadow-2xl opacity-0 pointer-events-none transition-all duration-300 hover:bg-brand-dark hover:scale-110 z-40">
+        <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Set minimum date for all date pickers to today
+        function setMinDate() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            const minDate = `${year}-${month}-${day}`;
+
+            // Set for main reservation form
+            const mainDateInput = document.getElementById('reservation-date');
+            if (mainDateInput) {
+                mainDateInput.setAttribute('min', minDate);
+                mainDateInput.value = minDate; // Set default to today
+            }
+        }
+
+        // Call on page load
+        setMinDate();
+
+        // Loading Screen
+        let loadProgress = 0;
+        const loadingBar = document.getElementById('loading-bar');
+        const loader = document.getElementById('loader');
+
+        const loadInterval = setInterval(() => {
+            loadProgress += Math.random() * 30;
+            if (loadProgress >= 100) {
+                loadProgress = 100;
+                clearInterval(loadInterval);
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }, 500);
+                }, 300);
+            }
+            loadingBar.style.width = loadProgress + '%';
+        }, 200);
+
+        // Initialize AOS with enhanced settings
+        AOS.init({
+            duration: 1200,
+            once: false, // Allow re-animation on scroll
+            offset: 50,
+            easing: 'ease-out-cubic',
+            mirror: true,
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('glass', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('glass', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+
+        // Hero parallax
+        const heroBg = document.getElementById('hero-bg');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            if (scrolled < window.innerHeight) {
+                heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Menu filter
+        const menuFilters = document.querySelectorAll('.menu-filter');
+        const menuCards = document.querySelectorAll('.menu-card');
+
+        menuFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                const category = filter.getAttribute('data-category');
+
+                menuFilters.forEach(f => {
+                    f.classList.remove('bg-brand-orange', 'text-white');
+                });
+                filter.classList.add('bg-brand-orange', 'text-white');
+
+                menuCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scroll-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                scrollTopBtn.classList.add('opacity-100');
+            } else {
+                scrollTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                scrollTopBtn.classList.remove('opacity-100');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Magnetic button effect
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+
+        if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // Cabana Card Buttons - Reserve Cabana & Reserve Table
+        const reserveCabanaBtn = document.querySelector('.reserve-cabana-btn');
+        const reserveTableBtn = document.querySelector('.reserve-table-btn');
+
+        // Function to show reservation modal
+        function showReservationModal(type, prefill) {
+            prefill = prefill || {};
+            const modalDiv = document.createElement('div');
+            modalDiv.className = 'fixed inset-0 z-[999] flex items-center justify-center bg-black/50 backdrop-blur-sm';
+            modalDiv.innerHTML = `
+                <div class="bg-white rounded-3xl p-5 sm:p-8 md:p-12 w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto transform scale-0 transition-transform duration-500" id="reservation-modal">
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-serif font-bold text-brand-dark mb-2">Reserve Your ${type}</h3>
+                        <p class="text-brand-brown/70">Send your request and our team will confirm it with you</p>
+                    </div>
+
+                    <form id="modal-reservation-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-brand-dark">Full Name *</label>
+                                <input type="text" name="name" required maxlength="80" autocomplete="name"
+                                       class="w-full px-4 py-3 rounded-xl border-2 border-brand-brown/20 focus:border-brand-orange outline-none transition-all duration-300 bg-white"
+                                       placeholder="Enter your name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-brand-dark">Phone Number *</label>
+                                <input type="tel" name="phone" required maxlength="20" autocomplete="tel" inputmode="tel"
+                                       class="w-full px-4 py-3 rounded-xl border-2 border-brand-brown/20 focus:border-brand-orange outline-none transition-all duration-300 bg-white"
+                                       placeholder="+91 XXXXX XXXXX">
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-brand-dark">Date *</label>
+                                <input type="date" name="date" required
+                                       class="w-full px-4 py-3 rounded-xl border-2 border-brand-brown/20 focus:border-brand-orange outline-none transition-all duration-300 bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-brand-dark">Time *</label>
+                                <select name="time" required class="w-full px-4 py-3 rounded-xl border-2 border-brand-brown/20 focus:border-brand-orange outline-none transition-all duration-300 bg-white">
+                                    <option value="">Select time</option>
+                                    <option>12:00 PM</option>
+                                    <option>01:00 PM</option>
+                                    <option>02:00 PM</option>
+                                    <option>07:00 PM</option>
+                                    <option>08:00 PM</option>
+                                    <option>09:00 PM</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-brand-dark">Guests *</label>
+                                <select name="guests" required class="w-full px-4 py-3 rounded-xl border-2 border-brand-brown/20 focus:border-brand-orange outline-none transition-all duration-300 bg-white">
+                                    <option value="">Select guests</option>
+                                    <option>2 People</option>
+                                    <option>3-4 People</option>
+                                    <option>5-6 People</option>
+                                    <option>7-10 People</option>
+                                    <option>10+ People</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-brand-dark">Special Requests (Optional)</label>
+                            <textarea name="notes" rows="3" maxlength="500"
+                                      class="w-full px-4 py-3 rounded-xl border-2 border-brand-brown/20 focus:border-brand-orange outline-none transition-all duration-300 bg-white resize-none"
+                                      placeholder="Any dietary restrictions, occasion, or special requirements..."></textarea>
+                        </div>
+
+                        <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+                            <label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+                        </div>
+
+                        <p id="reservation-error" role="alert" class="hidden text-sm font-semibold text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3"></p>
+
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                            <button type="submit" class="flex-1 bg-brand-orange text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-dark transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                                Send Reservation Request
+                            </button>
+                            <button type="button" onclick="this.closest('.fixed').remove()" class="flex-1 border-2 border-brand-orange text-brand-orange px-8 py-4 rounded-xl font-bold hover:bg-brand-orange hover:text-white transition-all duration-300">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            `;
+
+            document.body.appendChild(modalDiv);
+
+            // Animate modal
+            setTimeout(() => {
+                document.getElementById('reservation-modal').style.transform = 'scale(1)';
+            }, 10);
+
+            // ---- helpers ----
+            const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+            const todayStr = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+            const form = document.getElementById('modal-reservation-form');
+            const field = n => form.querySelector('[name="' + n + '"]');
+            const setSelect = (sel, val) => {
+                if (!val) return;
+                let opt = [...sel.options].find(o => o.value === val || o.text === val);
+                if (!opt) { opt = new Option(val, val); sel.add(opt); }
+                sel.value = opt.value;
+            };
+            field('date').min = todayStr;
+            if (prefill.date) field('date').value = prefill.date;
+            setSelect(field('time'), prefill.time);
+            setSelect(field('guests'), prefill.guests);
+
+            function showError(msg) {
+                const el = document.getElementById('reservation-error');
+                el.innerHTML = esc(msg) + ' You can also call us on <a class="underline" href="tel:+917978276380">+91 79782 76380</a>.';
+                el.classList.remove('hidden');
+            }
+
+            function showSuccess(d) {
+                const nice = new Date(d.date + 'T00:00:00').toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                modalDiv.innerHTML = `
+                    <div class="bg-white rounded-3xl p-6 sm:p-12 w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto text-center">
+                        <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-3xl font-serif font-bold text-brand-dark mb-3">Request Received!</h3>
+                        <p class="text-brand-brown/70 mb-5 leading-relaxed">
+                            Thank you, <strong>${esc(d.name)}</strong>. We have received your ${esc(d.type.toLowerCase())} request at Pahadi Dhaba &amp; Cafe.
+                        </p>
+                        <div class="bg-brand-cream rounded-2xl p-5 mb-5 text-left space-y-2">
+                            <div><span class="text-sm text-brand-brown/60">Reference</span><div class="font-bold text-xl tracking-wider text-brand-orange">${esc(d.reference)}</div></div>
+                            <div class="font-semibold">📅 ${esc(nice)}</div>
+                            <div class="font-semibold">🕒 ${esc(d.time)}</div>
+                            <div class="font-semibold">👥 ${esc(d.guests)}</div>
+                        </div>
+                        <div class="bg-brand-orange/10 rounded-2xl p-4 mb-6">
+                            <p class="text-sm text-brand-dark"><strong>Your table is not confirmed yet.</strong><br>Our team will call or WhatsApp you on ${esc(d.phone)} to confirm. Please keep your reference handy.</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                            <a href="tel:+917978276380" class="flex-1 bg-brand-orange text-white px-6 py-4 rounded-xl font-bold hover:bg-brand-dark transition-all">Call Now</a>
+                            <button onclick="this.closest('.fixed').remove()" class="flex-1 border-2 border-brand-orange text-brand-orange px-6 py-4 rounded-xl font-bold hover:bg-brand-orange hover:text-white transition-all">Close</button>
+                        </div>
+                    </div>`;
+            }
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const errEl = document.getElementById('reservation-error');
+                errEl.classList.add('hidden');
+                const submitBtn = form.querySelector('button[type="submit"]');
+
+                const payload = {
+                    type: type,
+                    name: field('name').value.trim(),
+                    phone: field('phone').value.trim(),
+                    date: field('date').value,
+                    time: field('time').value,
+                    guests: field('guests').value,
+                    notes: field('notes').value.trim(),
+                    website: field('website').value
+                };
+
+                if (payload.phone.replace(/\D/g, '').length < 10) { showError('Please enter a valid phone number.'); return; }
+                if (!payload.date || payload.date < todayStr) { showError('Please choose today or a future date.'); return; }
+
+                const label = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending…';
+                try {
+                    const res = await fetch('/api/reservations', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await res.json().catch(() => ({}));
+                    if (!res.ok || !data.ok) throw new Error(data.error || 'We could not send your request.');
+                    showSuccess(Object.assign({}, payload, { reference: data.reference }));
+                } catch (err) {
+                    showError(err instanceof TypeError ? 'We could not reach the booking system.' : err.message);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = label;
+                }
+            });
+        }
+
+        // Add click handlers
+        if (reserveCabanaBtn) {
+            reserveCabanaBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showReservationModal('Outdoor Hill Cabana');
+            });
+        }
+
+        if (reserveTableBtn) {
+            reserveTableBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showReservationModal('Royal AC Dining Hall');
+            });
+        }
+
+        // Quick form: collect date / time / guests, then ask for name & phone in the booking form
+        const reservationForm = document.querySelector('#cabanas form');
+        const reserveButton = reservationForm.querySelector('button[type="button"]');
+        const quickDate = reservationForm.querySelector('input[type="date"]');
+        quickDate.min = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+
+        reserveButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (!quickDate.value) {
+                alert('⚠️ Please select a date for your reservation');
+                quickDate.focus();
+                return;
+            }
+            if (quickDate.value < quickDate.min) {
+                alert('⚠️ Please select today or a future date');
+                quickDate.focus();
+                return;
+            }
+            const selects = reservationForm.querySelectorAll('select');
+            showReservationModal('Table', { date: quickDate.value, time: selects[0].value, guests: selects[1].value });
+        });
+
+        // GSAP Scroll Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Fade in elements on scroll
+        gsap.utils.toArray('.reveal').forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        });
+
+        // ============ ENHANCED PREMIUM ANIMATIONS ============
+
+        // Count-up animation for statistics
+        function animateCountUp(element) {
+            const target = parseFloat(element.getAttribute('data-target'));
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+
+                // Format the number
+                if (target % 1 !== 0) {
+                    element.textContent = current.toFixed(1);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString();
+                }
+            }, 16);
+        }
+
+        // Trigger count-up when stats section is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const countElements = entry.target.querySelectorAll('.count-up');
+                    countElements.forEach(el => {
+                        if (!el.classList.contains('counted')) {
+                            el.classList.add('counted');
+                            animateCountUp(el);
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('#hero').nextElementSibling;
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Parallax effect for multiple layers
+        window.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) / 50;
+            const moveY = (e.clientY - window.innerHeight / 2) / 50;
+
+            document.querySelectorAll('.parallax-layer').forEach((layer, index) => {
+                const speed = (index + 1) * 0.5;
+                layer.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
+            });
+        });
+
+        // Enhanced 3D tilt effect for cards
+        const canHover = !!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+        if (canHover) document.querySelectorAll('.hover-lift').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px) scale(1.03)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+            });
+        });
+
+        // Ripple effect on button click
+        document.querySelectorAll('.ripple-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple-animation 0.6s ease-out';
+                ripple.style.pointerEvents = 'none';
+
+                this.appendChild(ripple);
+
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple-animation {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Smooth scroll reveal for sections
+        gsap.utils.toArray('section:not(#menu)').forEach((section, index) => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    end: 'top 30%',
+                    scrub: 1,
+                },
+                y: 50,
+                opacity: 0.5,
+            });
+        });
+
+        // Parallax scrolling for hero background
+        gsap.to('#hero-bg', {
+            scrollTrigger: {
+                trigger: '#hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true,
+            },
+            y: 200,
+            scale: 1.2,
+        });
+
+        // Floating elements with advanced parallax
+        gsap.utils.toArray('.floating').forEach((element, index) => {
+            gsap.to(element, {
+                y: -30,
+                rotation: 5,
+                duration: 2 + index * 0.5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'power1.inOut',
+            });
+        });
+
+        // Image zoom on scroll
+        gsap.utils.toArray('.img-zoom img').forEach(img => {
+            gsap.from(img, {
+                scrollTrigger: {
+                    trigger: img,
+                    start: 'top 90%',
+                    end: 'bottom 60%',
+                    scrub: 1,
+                },
+                scale: 1.3,
+            });
+        });
+
+        // Text stagger animation
+        function splitTextIntoSpans(element) {
+            const text = element.textContent;
+            element.innerHTML = '';
+            text.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? ' ' : char;
+                span.style.animationDelay = `${index * 0.03}s`;
+                element.appendChild(span);
+            });
+        }
+
+        // Apply text animation to hero title
+        const heroTitle = document.querySelector('#hero h1');
+        if (heroTitle && heroTitle.querySelector('.gradient-text')) {
+            const gradientText = heroTitle.querySelector('.gradient-text');
+        }
+
+        // Gallery grid stagger animation
+        gsap.utils.toArray('#gallery .grid > div').forEach((item, index) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 90%',
+                },
+                scale: 0.8,
+                opacity: 0,
+                duration: 0.6,
+                delay: index * 0.05,
+                ease: 'power2.out',
+            });
+        });
+
+        // Reviews cards animation with 3D effect
+        gsap.utils.toArray('#reviews .grid > div').forEach((card, index) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                },
+                rotateY: 90,
+                opacity: 0,
+                duration: 0.8,
+                delay: index * 0.2,
+                ease: 'power3.out',
+            });
+        });
+
+        // Contact section info cards animation
+        gsap.utils.toArray('#contact .glass').forEach((card, index) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                },
+                x: index % 2 === 0 ? -100 : 100,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+            });
+        });
+
+        // Advanced hover effect for images with perspective
+        if (canHover) document.querySelectorAll('.img-zoom').forEach(container => {
+            const img = container.querySelector('img');
+
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
+                const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
+
+                img.style.transform = `scale(1.15) translate(${x}px, ${y}px) rotate(2deg)`;
+            });
+
+            container.addEventListener('mouseleave', () => {
+                img.style.transform = 'scale(1) translate(0, 0) rotate(0deg)';
+            });
+        });
+
+
+        // ============ GOOGLE MAPS DIRECTIONS ============
+        (function () {
+            const DESTINATION = 'Pahadi Dhaba and Cafe, Plot No.583, Chandaka Industrial Estate, Patharagadia, Bhubaneswar, Odisha 751024';
+            const originInput = document.getElementById('directions-origin');
+            const statusEl = document.getElementById('directions-status');
+            const locateBtn = document.getElementById('use-my-location');
+            const goBtn = document.getElementById('get-directions-btn');
+            if (!originInput || !goBtn) return;
+
+            let mode = 'driving';
+            let usingGps = false;
+
+            function setStatus(msg, ok) {
+                statusEl.textContent = msg;
+                statusEl.className = 'text-sm mt-3 min-h-[1.25rem] ' + (ok ? 'text-green-700' : 'text-red-600');
+            }
+
+            document.querySelectorAll('.travel-mode').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    mode = btn.getAttribute('data-mode');
+                    document.querySelectorAll('.travel-mode').forEach(b => {
+                        b.classList.remove('bg-brand-orange', 'text-white');
+                        b.classList.add('bg-brand-brown/10', 'text-brand-dark');
+                    });
+                    btn.classList.add('bg-brand-orange', 'text-white');
+                    btn.classList.remove('bg-brand-brown/10', 'text-brand-dark');
+                });
+            });
+
+            // Typing a place overrides any earlier GPS fix
+            originInput.addEventListener('input', () => { usingGps = false; delete originInput.dataset.coords; setStatus('', true); });
+            originInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); goBtn.click(); } });
+
+            locateBtn.addEventListener('click', () => {
+                if (!navigator.geolocation) {
+                    setStatus('Your browser cannot share location. Please type your starting point instead.', false);
+                    return;
+                }
+                setStatus('Finding your location…', true);
+                navigator.geolocation.getCurrentPosition(
+                    pos => {
+                        const coords = pos.coords.latitude.toFixed(6) + ',' + pos.coords.longitude.toFixed(6);
+                        originInput.value = 'My current location';
+                        originInput.dataset.coords = coords;
+                        usingGps = true;
+                        setStatus('Location found. Tap "Get Directions" to open the route.', true);
+                    },
+                    () => setStatus('Could not get your location (permission denied or unavailable). Please type your starting point.', false),
+                    { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+                );
+            });
+
+            goBtn.addEventListener('click', () => {
+                const typed = originInput.value.trim();
+                const params = new URLSearchParams({ api: '1', destination: DESTINATION, travelmode: mode === 'two-wheeler' ? 'two-wheeler' : mode });
+                if (usingGps && originInput.dataset.coords) {
+                    params.set('origin', originInput.dataset.coords);
+                } else if (typed) {
+                    // Bias free-text hotel/landmark names toward Bhubaneswar
+                    params.set('origin', /bhubaneswar|odisha|cuttack|puri/i.test(typed) ? typed : typed + ', Bhubaneswar');
+                }
+                // With no origin, Google Maps asks for / uses the visitor's current location itself
+                window.open('https://www.google.com/maps/dir/?' + params.toString(), '_blank', 'noopener');
+                setStatus(typed || usingGps ? 'Opening Google Maps…' : 'Opening Google Maps with your current location…', true);
+            });
+
+            // Copy address
+            const copyLink = document.getElementById('copy-address');
+            if (copyLink) {
+                copyLink.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    const text = document.getElementById('address-text').textContent.replace(/\s+/g, ' ').trim();
+                    const label = copyLink.querySelector('span');
+                    try {
+                        await navigator.clipboard.writeText(text);
+                        label.textContent = 'Copied!';
+                    } catch (err) {
+                        const ta = document.createElement('textarea');
+                        ta.value = text; document.body.appendChild(ta); ta.select();
+                        try { document.execCommand('copy'); label.textContent = 'Copied!'; } catch (e2) { label.textContent = 'Press Ctrl+C to copy'; }
+                        ta.remove();
+                    }
+                    setTimeout(() => { label.textContent = 'Copy Address'; }, 2000);
+                });
+            }
+        })();
+
+        console.log('🎨 Premium animations initialized!');
+    </script>
+</body>
+</html>

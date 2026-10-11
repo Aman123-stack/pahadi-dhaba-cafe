@@ -1,0 +1,24 @@
+# Render Blueprint: Dashboard → New → Blueprint → pick this repository.
+#
+# This is the FREE demo setup: the site sleeps after ~15 minutes idle (first visit then takes ~30 s),
+# and admin edits / bookings / uploaded photos are reset whenever the service restarts or redeploys.
+#
+# For the real restaurant site, keep data permanently: change `plan: free` to `plan: starter`
+# and uncomment the `disk` block below (disks need a paid instance).
+services:
+  - type: web
+    name: pahadi-dhaba-cafe
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: ADMIN_TOKEN
+        generateValue: true # random admin password; read it in Dashboard → Environment
+      - key: DATA_DIR
+        value: /data
+      - key: TRUST_PROXY
+        value: "1"
+    # disk:
+    #   name: pahadi-data
+    #   mountPath: /data
+    #   sizeGB: 1
